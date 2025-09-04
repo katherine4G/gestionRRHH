@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.java.proyecto2;
 
 /**
@@ -9,11 +5,11 @@ package com.java.proyecto2;
  * @author katherine
  */
 public final class Practicante  {
-    String cedula;
-    String nombre;
-    int ayuda;
+    private String cedula;
+    private String nombre;
+    private double ayuda;
 
-    public Practicante(String cedula, String nombre, int ayuda) {
+    public Practicante(String cedula, String nombre, double ayuda) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.ayuda = ayuda;
@@ -35,12 +31,12 @@ public final class Practicante  {
         this.nombre = nombre;
     }
 
-    public int getAyuda() {
+    public double getAyuda() {
         return ayuda;
     }
 
-    public void setAyuda(int ayuda) {
+    public void setAyuda(double ayuda) {
         this.ayuda = ayuda;
     }
     
-}
+};

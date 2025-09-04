@@ -6,8 +6,9 @@ package com.java.proyecto2;
  */
 public final class Temporal  extends Empleado implements Bonificable {
     private Incentivo incentivo;
-    public Temporal(Salario salario, String cedula, String nombre) {
+    public Temporal(Salario salario, String cedula, String nombre, Incentivo p_incentivo) {
         super(salario, cedula, nombre);
+        this.incentivo = p_incentivo;
     }
     
 

@@ -8,10 +8,11 @@ public final class Comisionista  extends Empleado implements Bonificable {
     private double porcentaje_ventas;
     private double total_ventas; 
     private Incentivo incentivo;
-    public Comisionista(Salario salario, String cedula, String nombre, double p_porcentaje_ventas, double p_total_ventas) {
+    public Comisionista(Salario salario, String cedula, String nombre, double p_porcentaje_ventas, double p_total_ventas, Incentivo p_incentivo) {
         super(salario, cedula, nombre);
         this.porcentaje_ventas = p_porcentaje_ventas;
         this.total_ventas = p_total_ventas;
+        this.incentivo = p_incentivo;
     }
 
     @Override

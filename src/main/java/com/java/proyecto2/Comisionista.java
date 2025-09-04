@@ -26,5 +26,21 @@ public final class Comisionista  extends Empleado implements Bonificable {
     }
 
     public void setIncentivo(Incentivo incentivo) { this.incentivo = incentivo; }
+
+    public double getPorcentaje_ventas() {
+        return porcentaje_ventas;
+    }
+
+    public void setPorcentaje_ventas(double porcentaje_ventas) {
+        this.porcentaje_ventas = porcentaje_ventas;
+    }
+
+    public double getTotal_ventas() {
+        return total_ventas;
+    }
+
+    public void setTotal_ventas(double total_ventas) {
+        this.total_ventas = total_ventas;
+    }
     
 };

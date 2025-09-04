@@ -6,12 +6,12 @@ package com.java.proyecto2;
  */
 public class Salario {
     double tarifa;
-    int días;
+    int dias;
     int horas;
 
-    public Salario(double tarifa, int días, int horas) {
+    public Salario(double tarifa, int dias, int horas) {
         this.tarifa = tarifa;
-        this.días = días;
+        this.dias = dias;
         this.horas = horas;
     }
 
@@ -23,12 +23,12 @@ public class Salario {
         this.tarifa = tarifa;
     }
 
-    public int getDías() {
-        return días;
+    public int getDias() {
+        return dias;
     }
 
-    public void setDías(int días) {
-        this.días = días;
+    public void setDias(int dias) {
+        this.dias = dias;
     }
 
     public int getHoras() {

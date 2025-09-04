@@ -14,7 +14,7 @@ public final class Temporal  extends Empleado implements Bonificable {
 
     @Override
     public double salarioQuincena() {
-        return salario.getTarifa() * salario.getDías();
+        return salario.getTarifa() * salario.getDias();
     }
 
     @Override

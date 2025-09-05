@@ -1,5 +1,6 @@
-package com.java.proyecto2;
+package com.java.proyecto2.app;
 
+import com.java.proyecto2.app.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;

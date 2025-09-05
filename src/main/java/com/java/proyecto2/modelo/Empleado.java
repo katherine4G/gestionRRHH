@@ -1,8 +1,9 @@
-package com.java.proyecto2;
+package com.java.proyecto2.modelo;
 
 public abstract class Empleado {
     
     Salario salario;
+    
     private final String cedula;
 
     private final String nombre;
@@ -11,6 +12,14 @@ public abstract class Empleado {
         this.salario = salario;
         this.cedula = cedula;
         this.nombre = nombre;
+    }
+
+    public Salario getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Salario salario) {
+        this.salario = salario;
     }
 
 

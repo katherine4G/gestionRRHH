@@ -1,4 +1,4 @@
-package com.java.proyecto2;
+package com.java.proyecto2.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ public class App extends Application {
     private static Scene scene;
     private static final Map<String, Object> controllers = new HashMap<>();
 
-    // 👉 Variables globales para compartir datos
+    // Variables globales para compartir datos
     private static List<FilaPlanilla> ultimaPlanilla;
     private static ResumenPlanilla ultimoResumen;
 
@@ -29,7 +29,7 @@ public class App extends Application {
     }
 
     public static void setRoot(String fxml) throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/java/proyecto2/"+fxml + ".fxml"));
         scene = new Scene(loader.load());
         stage.setScene(scene);
 

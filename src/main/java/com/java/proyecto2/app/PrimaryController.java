@@ -1,5 +1,15 @@
-package com.java.proyecto2;
+package com.java.proyecto2.app;
 
+import com.java.proyecto2.app.FilaPlanilla;
+import com.java.proyecto2.app.App;
+import com.java.proyecto2.servicios.FabricaEmpleados;
+import com.java.proyecto2.modelo.Salario;
+import com.java.proyecto2.modelo.Practicante;
+import com.java.proyecto2.modelo.Comisionista;
+import com.java.proyecto2.modelo.Temporal;
+import com.java.proyecto2.modelo.PorHora;
+import com.java.proyecto2.modelo.Asalariado;
+import com.java.proyecto2.modelo.Empleado;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;

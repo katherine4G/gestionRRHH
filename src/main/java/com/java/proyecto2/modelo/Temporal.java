@@ -1,4 +1,6 @@
-package com.java.proyecto2;
+package com.java.proyecto2.modelo;
+
+import com.java.proyecto2.modelo.Empleado;
 
 /**
  *

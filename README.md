@@ -32,27 +32,46 @@ El sistema permite:
 ## 📂 Estructura del Proyecto
 ```
 Proyecto2/
-├── src/main/java/com/java/proyecto2/   # Código fuente
-│   ├── modelo/                         # Empleado, subclases, interfaces
-│   ├── servicios/                      # FabricaEmpleados, Nomina
-│   ├── infra/                          # Exportación CSV
-│   └── app/                            # App.java y controladores JavaFX
-│
+├── src/main/java/com/java/proyecto2/
+│   ├── app/
+│   │   ├── App.java
+│   │   ├── PrimaryController.java
+│   │   ├── SecondaryController.java
+│   │   └── ResumenController.java
+│   │
+│   ├── modelo/
+│   │   ├── Empleado.java
+│   │   ├── Asalariado.java
+│   │   ├── PorHora.java
+│   │   ├── Temporal.java
+│   │   ├── Comisionista.java
+│   │   ├── Practicante.java
+│   │   ├── Bonificable.java
+│   │   ├── Incentivo.java
+│   │   ├── IncentivoDesempeno.java
+│   │   └── Salario.java
+│   │
+│   ├── servicios/
+│       ├── FabricaEmpleados.java
+│       ├── FilaPlanilla.java
+│       └── ResumenPlanilla.java
+│   
 ├── src/main/resources/com/java/proyecto2/
 │   ├── primary.fxml
 │   ├── secondary.fxml
 │   └── resumen.fxml
 │
-├── data/                               # Archivos de entrada
+├── data/
 │   ├── empleados.csv
 │   ├── asistencia.csv
 │   └── ventas.csv
 │
-├── out/                                # Salidas generadas
+├── out/
 │   └── planilla_quincena.csv
 │
 ├── README.md
-└── Diseño_POOUML.pdf                   # UML + decisiones de diseño
+└── Diseño_POOUML.pdf
+
 ```
 
 ---
@@ -124,7 +143,5 @@ cedula;nombre;tipo;salarioQuincena;bono;totalAPagar
 104;Carlos Lopez;COMISIONISTA;860.00;0.00;860.00
 105;Jose Soto;PRACTICANTE;200.00;0.00;200.00
 ```
-
----
 
 ---

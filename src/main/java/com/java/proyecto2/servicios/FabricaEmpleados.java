@@ -1,4 +1,8 @@
-package com.java.proyecto2;
+package com.java.proyecto2.servicios;
+
+import com.java.proyecto2.app.FilaPlanilla;
+import com.java.proyecto2.app.ResumenPlanilla;
+import com.java.proyecto2.modelo.*; 
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -125,16 +129,16 @@ public class FabricaEmpleados {
                 lineas.add(String.format(Locale.US,
                         "ASALARIADO;%s;%s;%.2f", e.getCedula(), e.getNombre(), mensual));
             } else if (e instanceof PorHora) {
-                Salario s = e.salario;
+                Salario s = e.getSalario();
                 lineas.add(String.format(Locale.US,
                         "PORHORAS;%s;%s;%.2f;%d", e.getCedula(), e.getNombre(), s.getTarifa(), s.getHoras()));
             } else if (e instanceof Temporal) {
-                Salario s = e.salario;
+                Salario s = e.getSalario();
                 lineas.add(String.format(Locale.US,
                         "TEMPORAL;%s;%s;%.2f;%d", e.getCedula(), e.getNombre(), s.getTarifa(), s.getDias()));
             } else if (e instanceof Comisionista) {
                 Comisionista c = (Comisionista) e;
-                Salario s = e.salario;
+                Salario s = e.getSalario();
                 // Requiere getters en Comisionista
                 lineas.add(String.format(Locale.US,
                         "COMISIONISTA;%s;%s;%.2f;%.4f;%.2f",
@@ -176,12 +180,12 @@ public class FabricaEmpleados {
                 int horas = Integer.parseInt(cols[2]);
                 buscarEmpleadoPorCedula(cedula)
                         .filter(e -> e instanceof PorHora)
-                        .ifPresent(e -> e.salario.setHoras(horas));
+                        .ifPresent(e -> e.getSalario().setHoras(horas));
             } else if ("TEMPORAL".equals(tipo)) {
                 int dias = Integer.parseInt(cols[2]);
                 buscarEmpleadoPorCedula(cedula)
                         .filter(e -> e instanceof Temporal)
-                        .ifPresent(e -> e.salario.setDias(dias));
+                        .ifPresent(e -> e.getSalario().setDias(dias));
             }
         }
     }

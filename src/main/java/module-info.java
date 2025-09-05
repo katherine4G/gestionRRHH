@@ -1,8 +1,10 @@
 module com.java.proyecto2 {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.base;
+    
+    exports com.java.proyecto2.app;
+    exports com.java.proyecto2.modelo;
+    exports com.java.proyecto2.servicios;
 
-    opens com.java.proyecto2 to javafx.fxml;
-    exports com.java.proyecto2;
+    opens com.java.proyecto2.app to javafx.fxml;
 }

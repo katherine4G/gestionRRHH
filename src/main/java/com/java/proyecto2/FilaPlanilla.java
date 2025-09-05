@@ -25,4 +25,29 @@ public class FilaPlanilla {
         this.bono = bono;
         this.totalAPagar = salarioQuincena + bono;
     }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getSalarioQuincena() {
+        return salarioQuincena;
+    }
+
+    public double getBono() {
+        return bono;
+    }
+
+    public double getTotalAPagar() {
+        return totalAPagar;
+    }
+    
 }

@@ -2,78 +2,62 @@ package com.java.proyecto2;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class App extends Application {
 
+    private static Stage stage;
     private static Scene scene;
+    private static final Map<String, Object> controllers = new HashMap<>();
+
+    // 👉 Variables globales para compartir datos
+    private static List<FilaPlanilla> ultimaPlanilla;
+    private static ResumenPlanilla ultimoResumen;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
+    public void start(Stage primaryStage) throws IOException {
+        stage = primaryStage;
+        setRoot("primary"); // pantalla inicial
+        stage.setTitle("Sistema de Nómina - RRHH");
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public static void setRoot(String fxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        controllers.put(fxml, loader.getController());
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+    public static Object getController(String name) {
+        return controllers.get(name);
     }
 
-    public static void main(String[] args) throws IOException {
-        try {
-            FabricaEmpleados fabrica = new FabricaEmpleados();
-            //"src/main/java/com/java/proyecto2/empleados.csv"
-            System.out.println("App.class: "+ App.class.getResourceAsStream("/com/java/proyecto2/data/empleados.csv"));
-            Path archivo = Paths.get("data/empleados.csv");
-            System.out.println("Rutas de empleados.csv: " + archivo.toAbsolutePath());
-            // 🔹 Crear algunos empleados de prueba
-            Salario salarioBase = new Salario(0.0, 0, 0);
+    // 👉 Métodos para compartir la planilla y resumen
+    public static void setUltimaPlanilla(List<FilaPlanilla> planilla) {
+        ultimaPlanilla = planilla;
+    }
 
-            Asalariado asalariado = new Asalariado(1200.0, salarioBase, "101", "Ana Perez");
-            //int p_horas_maximas, Salario salario, String cedula, String nombre, Incentivo p_incentivo
-            PorHora porHora = new PorHora(80,new Salario(10.0, 0, 40), "102", "Luis Gomez",null);
-            //Salario salario, String cedula, String nombre, Incentivo p_incentivo
-            Temporal temporal = new Temporal(new Salario(50.0, 10, 0), "103", "Maria Ruiz",null);
-            //Salario salario, String cedula, String nombre, double p_porcentaje_ventas, double p_total_ventas, Incentivo p_incentivo
-            Comisionista comisionista = new Comisionista(new Salario(300.0, 0, 0), "104", "Carlos Lopez", 0.05, 5000.0,null);
-            Practicante practicante = new Practicante("105", "Jose Soto", 200);
+    public static List<FilaPlanilla> getUltimaPlanilla() {
+        return ultimaPlanilla;
+    }
 
-            // 🔹 Agregar a la fábrica
-            fabrica.agregar(asalariado);
-            fabrica.agregar(porHora);
-            fabrica.agregar(temporal);
-            fabrica.agregar(comisionista);
-            fabrica.agregar(practicante);
+    public static void setUltimoResumen(ResumenPlanilla resumen) {
+        ultimoResumen = resumen;
+    }
 
-            // 🔹 Guardar en CSV
+    public static ResumenPlanilla getUltimoResumen() {
+        return ultimoResumen;
+    }
 
-            fabrica.guardarEmpleadosCsv(archivo);
-               
-            System.out.println("Empleados guardados en: " + archivo.toAbsolutePath());
-
-            // 🔹 Cargar de nuevo para verificar
-            FabricaEmpleados otraFabrica = new FabricaEmpleados();
-            otraFabrica.cargarEmpleadosCsv(archivo);
-
-            var planilla = otraFabrica.generarPlanilla();
-            for (FilaPlanilla f : planilla) {
-                System.out.printf("%s - %s - %s - Q: %.2f - Bono: %.2f - Total: %.2f%n", f.cedula, f.nombre, f.tipo, f.salarioQuincena, f.bono, f.totalAPagar);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
+    public static void main(String[] args) {
         launch();
     }
 }
-

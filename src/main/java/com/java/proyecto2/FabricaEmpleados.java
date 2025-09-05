@@ -70,7 +70,8 @@ public class FabricaEmpleados {
                     double tarifaHora = Double.parseDouble(cols[3]);
                     int horas = Integer.parseInt(cols[4]);
                     Salario s = new Salario(tarifaHora, 0, horas);
-                    PorHora ph = new PorHora(0,s, cedula, nombre,null);
+                    // usamos 'horas' como límite máximo (p_horas_maximas)
+                    PorHora ph = new PorHora(horas, s, cedula, nombre, null);
                     agregar(ph);
                     break;
                 }

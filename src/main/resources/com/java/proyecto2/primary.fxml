@@ -1,16 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.java.proyecto2.PrimaryController">
-   <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
-   </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.java.proyecto2.PrimaryController"
+            style="-fx-padding: 20;">
+
+    <!-- Menú -->
+    <top>
+        <MenuBar>
+            <Menu text="Archivo">
+                <MenuItem text="Cargar empleados (CSV)" onAction="#cargarEmpleados"/>
+                <MenuItem text="Cargar asistencia (CSV)" onAction="#cargarAsistencia"/>
+                <MenuItem text="Cargar ventas (CSV)" onAction="#cargarVentas"/>
+                <MenuItem text="Salir" onAction="#salir"/>
+            </Menu>
+
+            <Menu text="Planilla">
+                <MenuItem text="Ver planilla detallada" onAction="#switchToSecondary"/>
+                <MenuItem text="Ver resumen de planilla" onAction="#switchToResumen"/>
+            </Menu>
+
+            <Menu text="Ayuda">
+                <MenuItem text="Acerca de" onAction="#mostrarAcercaDe"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Contenido principal -->
+    <center>
+        <VBox spacing="15">
+            <!-- Bienvenida -->
+            <Label text="Sistema de Nómina - RRHH"
+                   style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Label text="Seleccione una opción en el menú superior"
+                   style="-fx-font-size: 14;"/>
+
+            <!-- 📌 Formulario para nuevo empleado -->
+            <TitledPane text="Agregar nuevo Empleado" expanded="false">
+                <VBox spacing="10" style="-fx-padding: 10;">
+                    <!-- Selección de tipo -->
+                    <ComboBox fx:id="cbTipoEmpleado" promptText="Seleccione tipo de empleado"/>
+
+                    <!-- Campos comunes -->
+                    <TextField fx:id="txtCedula" promptText="Cédula"/>
+                    <TextField fx:id="txtNombre" promptText="Nombre completo"/>
+
+                    <!-- Campos variables -->
+                <TextField fx:id="txtSalario" promptText="Salario mensual" visible="false" managed="false"/>
+                <TextField fx:id="txtTarifaHora" promptText="Tarifa por hora" visible="false" managed="false"/>
+                <TextField fx:id="txtHoras" promptText="Horas quincena" visible="false" managed="false"/>
+                <TextField fx:id="txtTarifaDiaria" promptText="Tarifa diaria" visible="false" managed="false"/>
+                <TextField fx:id="txtDias" promptText="Días trabajados" visible="false" managed="false"/>
+                <TextField fx:id="txtBase" promptText="Base quincenal (comisionista)" visible="false" managed="false"/>
+                <TextField fx:id="txtPorcentaje" promptText="Porcentaje ventas (ej: 0.05)" visible="false" managed="false"/>
+                <TextField fx:id="txtVentas" promptText="Ventas quincena" visible="false" managed="false"/>
+                <TextField fx:id="txtApoyo" promptText="Apoyo económico (practicante)" visible="false" managed="false"/>
+
+                    <Button fx:id="btnGuardarEmpleado" text="Guardar empleado" onAction="#guardarEmpleado"/>
+                </VBox>
+            </TitledPane>
+
+
+        <TitledPane text="Empleados cargados" expanded="true">
+            <VBox spacing="10" alignment="CENTER">
+                <TableView fx:id="tablaEmpleados" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="colCedula" text="Cédula" prefWidth="100"/>
+                        <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+                        <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
+                    </columns>
+                </TableView>
+
+                <!-- Mensaje cuando no hay archivo -->
+                <Label fx:id="lblSinArchivo" text="Selecciona un archivo empleados.csv"
+                       style="-fx-font-size: 14; -fx-text-fill: gray;"/>
+
+                <!-- 📌 Botón para generar planilla -->
+                <Button text="Generar Planilla" onAction="#generarPlanilla"
+                        style="-fx-font-size: 14; -fx-background-color: #3c89ff; -fx-text-fill: white;"/>
+            </VBox>
+        </TitledPane>
+
+        </VBox>
+    </center>
+</BorderPane>
